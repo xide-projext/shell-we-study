@@ -10,8 +10,12 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.0.0",
+    "ag-grid-community": "^29.0.0",
+    "ag-grid-enterprise": "^29.0.0",
+    "ag-grid-vue3": "^29.0.0",
     "axios": "^1.1.2",
     "vue": "^3.2.37",
+    "vue3-datepicker": "^0.3.4",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
