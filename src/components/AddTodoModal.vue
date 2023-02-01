@@ -31,9 +31,9 @@
                 <small class="section_title">co-doers</small
                 ><input
                   v-model="input_coDoer"
-                  @keyup.enter="addCoDoer"
                   class="co-doer"
                   type="text"
+                  @keyup.enter="addCoDoer"
                 />
                 <button @click="addCoDoer">추가</button>
                 <ul id="coDoer_list">
@@ -52,29 +52,29 @@
     </div>
   </div>
 </template>
-<script setup>
-import { ref, VueElement } from "vue";
-import Datepicker from "vue3-datepicker";
+<script setup lang="ts">
+import { ref } from 'vue'
+import Datepicker from 'vue3-datepicker'
 
-const input_title = ref("");
-const input_link = ref("");
-const input_comment = ref("");
-const input_date = ref(new Date());
-const input_coDoer = ref("");
-const coDoer_list = ref([]);
+const input_title = ref('')
+const input_link = ref('')
+const input_comment = ref('')
+const input_date = ref(new Date())
+const input_coDoer = ref('')
+const coDoer_list = ref([])
 
 const props = defineProps({
   selectedRow: {
     type: Object,
   },
-});
+})
 
 // 기존에 있던 todo 눌렀을 때
-if (props.selectedRow.title !== "") {
-  input_title.value = props.selectedRow.title;
-  input_link.value = props.selectedRow.link;
-  input_date.value = new Date(props.selectedRow.due);
-  coDoer_list.value = props.selectedRow.coDoers;
+if (props.selectedRow?.title !== '') {
+  input_title.value = props.selectedRow?.title
+  input_link.value = props.selectedRow?.link
+  input_date.value = new Date(props.selectedRow?.due)
+  coDoer_list.value = props.selectedRow?.coDoers
   // input_comment.value <= db에서 가져오기
 }
 
@@ -83,20 +83,20 @@ const input_data = {
   link: input_link,
   coDoers: coDoer_list,
   due: input_date,
-};
+}
 
-const emit = defineEmits(["addNewOne"]);
+const emit = defineEmits(['add-new-one'])
 
 const addCoDoer = () => {
-  if (input_coDoer.value != "") {
-    coDoer_list.value.push(input_coDoer.value);
-    input_coDoer.value = "";
+  if (input_coDoer.value != '') {
+    coDoer_list.value.push(input_coDoer.value)
+    input_coDoer.value = ''
   }
-};
+}
 
 const saveTodo = () => {
-  emit("addNewOne", input_data);
-};
+  emit('add-new-one', input_data)
+}
 </script>
 
 <style>
