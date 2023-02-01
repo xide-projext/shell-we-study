@@ -19,8 +19,12 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
     "@types/node": "^18.8.5",
     "@vitejs/plugin-vue": "^3.1.0",
+    "@vue/test-utils": "^2.2.8",
+    "babel-jest": "^29.4.1",
     "vite": "^3.1.0"
   }
 }
