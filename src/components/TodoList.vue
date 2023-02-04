@@ -29,6 +29,15 @@ import 'ag-grid-enterprise'
 // import { LicenseManager } from "ag-grid-enterprise";
 // LicenseManager.setLicenseKey("info@ag-grid.com");
 
+interface todoData {
+  title: string
+  link: string
+  coDoers: Array<string>
+  due: string
+  understanding: string
+  del_btn: string
+}
+
 const showModal = ref(false)
 const selectedRow = ref({
   title: '',
@@ -39,7 +48,7 @@ const selectedRow = ref({
   del_btn: '',
 })
 
-const myRowData = [
+const myRowData: todoData[] = [
   // [DATA-EXAMPLE]
   {
     title: 'TOEIC',
@@ -79,6 +88,7 @@ const myColumnDefs = [
 
 let gridApi = null
 let columnApi = null
+
 const gridOptions = {
   rowData: myRowData,
   columnDefs: myColumnDefs,
@@ -88,7 +98,7 @@ const gridOptions = {
   },
 }
 
-const onGridReady = (params) => {
+const onGridReady = (params: any) => {
   gridApi = params.api
   params.api.sizeColumnsToFit()
 }
@@ -97,7 +107,7 @@ const clickAddTodo = () => {
   showModal.value = !showModal.value
 }
 
-const convertMonthData = (month) => {
+const convertMonthData = (month: string) => {
   switch (month) {
     case 'Jan':
       month = '01'
@@ -141,7 +151,7 @@ const convertMonthData = (month) => {
   return month
 }
 
-const addNewTodo = (input_data) => {
+const addNewTodo = (input_data: any) => {
   showModal.value = false
 
   // title이 있을 때만 저장
@@ -176,14 +186,14 @@ const addNewTodo = (input_data) => {
   selectedRow.value = {
     title: '',
     link: '',
-    coDoers: '',
+    coDoers: [],
     due: '',
     understanding: '',
     del_btn: '',
   }
 }
 
-const clickRowData = (params) => {
+const clickRowData = (params: any) => {
   const col_name = params.column.colId
   if (col_name === 'del_btn') {
     params.api.applyTransaction({

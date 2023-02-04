@@ -38,7 +38,7 @@
                 <button @click="addCoDoer">추가</button>
                 <ul id="coDoer_list">
                   <div v-if="coDoer_list.length > 0">
-                    <li v-for="(co, index) in coDoer_list" :key="co" class="">
+                    <li v-for="(co, index) in coDoer_list" class="">
                       {{ co }}
                       <button @click="coDoer_list.splice(index, 1)">❌</button>
                     </li>
@@ -61,7 +61,7 @@ const input_link = ref('')
 const input_comment = ref('')
 const input_date = ref(new Date())
 const input_coDoer = ref('')
-const coDoer_list = ref([])
+const coDoer_list = ref<Array<String>>([])
 
 const props = defineProps({
   selectedRow: {
