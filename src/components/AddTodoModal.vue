@@ -3,60 +3,112 @@
     <div class="modal-wrapper">
       <div class="modal-container">
         <div class="modal-header">
-          <button class="save_btn" @click="saveTodo">저장</button>
+          <button
+            class="save_btn mb-4 bg-sky-800 hover:bg-sky-900 text-white border-none focus:outline-none"
+            @click="saveTodo"
+          >
+            저장
+          </button>
         </div>
         <div class="modal-body">
-          <label for="todo_title" class="section_title">Title</label>
-          <input
-            name="todo_title"
-            v-model="input_title"
-            class="title"
-            type="text"
-          />
-          <hr />
-
+          <div
+            class="mb-4 relative rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:border-sky-800 focus-within:ring-1 focus-within:ring-sky-800"
+          >
+            <label
+              for="todo_title"
+              class="section_title absolute -top-2 left-2 -mt-px inline-block bg-white px-1 font-medium text-gray-900"
+              >Title</label
+            >
+            <input
+              name="todo_title"
+              v-model="input_title"
+              class="title block w-full border-0 p-0 bg-white text-gray-900 placeholder-gray-500 focus:ring-0 focus:outline-none"
+              type="text"
+            />
+          </div>
           <div class="input_section">
-            <div class="is-vertical">
-              <label for="todo_link" class="section_title">Link</label>
-              <input
-                name="todo_link"
-                v-model="input_link"
-                class="link"
-                type="text"
-              />
-              <label for="todo_comment" class="section_title">Comment</label
-              ><textarea
-                name="todo_comment"
-                v-model="input_comment"
-                class="comment"
-                cols="50"
-                rows="10"
-              ></textarea>
+            <div class="is-vertical mr-3">
+              <div
+                class="mb-4 relative rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:border-sky-800 focus-within:ring-1 focus-within:ring-sky-800"
+              >
+                <label
+                  for="todo_link"
+                  class="section_title absolute -top-2 left-2 -mt-px inline-block bg-white px-1 font-medium text-gray-900"
+                  >Link</label
+                >
+                <input
+                  name="todo_link"
+                  v-model="input_link"
+                  class="link block border-0 p-0 bg-white text-gray-900 placeholder-gray-500 focus:ring-0 focus:outline-none"
+                  type="text"
+                />
+              </div>
+              <div
+                class="mb-4 relative rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:border-sky-800 focus-within:ring-1 focus-within:ring-sky-800"
+              >
+                <label
+                  for="todo_comment"
+                  class="section_title absolute -top-2 left-2 -mt-px inline-block bg-white px-1 font-medium text-gray-900"
+                  >Comment</label
+                ><textarea
+                  name="todo_comment"
+                  v-model="input_comment"
+                  class="comment block border-0 p-0 bg-white text-gray-900 placeholder-gray-500 focus:ring-0 focus:outline-none"
+                  cols="50"
+                  rows="8"
+                ></textarea>
+              </div>
             </div>
             <div class="is-vertical">
-              <div>
-                <label for="todo_due" class="section_title">Due</label>
-                <Datepicker name="todo_due" v-model="input_date" />
+              <div
+                class="mb-4 relative rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:border-sky-800 focus-within:ring-1 focus-within:ring-sky-800"
+              >
+                <label
+                  for="todo_due"
+                  class="section_title absolute -top-2 left-2 -mt-px inline-block bg-white px-1 font-medium text-gray-900"
+                  >Due</label
+                >
+                <Datepicker
+                  name="todo_due"
+                  v-model="input_date"
+                  class="block border-0 p-0 bg-white text-gray-900 placeholder-gray-500 focus:ring-0 focus:outline-none"
+                />
               </div>
-              <div>
-                <label for="todo_coDoers" class="section_title">co-doers</label
+              <div
+                class="mb-4 flex relative rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:border-sky-800 focus-within:ring-1 focus-within:ring-sky-800"
+              >
+                <label
+                  for="todo_coDoers"
+                  class="section_title absolute -top-2 left-2 -mt-px inline-block bg-white px-1 font-medium text-gray-900"
+                  >co-doers</label
                 ><input
                   name="todo_coDoer"
                   v-model="input_coDoer"
                   @keyup.enter="addCoDoer"
-                  class="co-doer"
+                  class="co-doer block border-0 p-0 bg-white text-gray-900 placeholder-gray-500 focus:ring-0 focus:outline-none"
                   type="text"
                 />
-                <button @click="addCoDoer">추가</button>
-                <ul id="coDoer_list">
-                  <div v-if="coDoer_list.length > 0">
-                    <li v-for="(co, index) in coDoer_list" :key="co">
-                      {{ co }}
-                      <button @click="coDoer_list.splice(index, 1)">❌</button>
-                    </li>
-                  </div>
-                </ul>
+                <button
+                  class="bg-white border-none focus:outline-none"
+                  @click="addCoDoer"
+                >
+                  ➕
+                </button>
               </div>
+
+              <ul id="coDoer_list">
+                <div v-if="coDoer_list.length > 0">
+                  <li v-for="(co, index) in coDoer_list" :key="co">
+                    {{ co }}
+                    <button
+                      class="bg-white border-none focus:outline-none"
+                      @click="coDoer_list.splice(index, 1)"
+                    >
+                      ❌
+                    </button>
+                  </li>
+                </div>
+              </ul>
             </div>
           </div>
         </div>
@@ -65,7 +117,7 @@
   </div>
 </template>
 <script setup>
-import { ref, VueElement } from "vue";
+import { ref } from "vue";
 import Datepicker from "vue3-datepicker";
 
 const input_title = ref("");

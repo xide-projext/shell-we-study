@@ -2,9 +2,15 @@
 module.exports = {
   // purge: [],
   purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
-  darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        transparent: "transparent",
+        current: "currentColor",
+        "sky-800": "#075985",
+        "sky-900": "#0c4a6e",
+      },
+    },
   },
   variants: {
     extend: {},
