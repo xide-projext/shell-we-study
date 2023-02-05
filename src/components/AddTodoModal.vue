@@ -6,16 +6,27 @@
           <button class="save_btn" @click="saveTodo">저장</button>
         </div>
         <div class="modal-body">
-          <small class="section_title">Title</small>
-          <input v-model="input_title" class="title" type="text" />
+          <label for="todo_title" class="section_title">Title</label>
+          <input
+            name="todo_title"
+            v-model="input_title"
+            class="title"
+            type="text"
+          />
           <hr />
 
           <div class="input_section">
             <div class="is-vertical">
-              <small class="section_title">Link</small>
-              <input v-model="input_link" class="link" type="text" />
-              <small class="section_title">Comment</small
+              <label for="todo_link" class="section_title">Link</label>
+              <input
+                name="todo_link"
+                v-model="input_link"
+                class="link"
+                type="text"
+              />
+              <label for="todo_comment" class="section_title">Comment</label
               ><textarea
+                name="todo_comment"
                 v-model="input_comment"
                 class="comment"
                 cols="50"
@@ -24,12 +35,13 @@
             </div>
             <div class="is-vertical">
               <div>
-                <small class="section_title">Due</small>
-                <Datepicker v-model="input_date" />
+                <label for="todo_due" class="section_title">Due</label>
+                <Datepicker name="todo_due" v-model="input_date" />
               </div>
               <div>
-                <small class="section_title">co-doers</small
+                <label for="todo_coDoers" class="section_title">co-doers</label
                 ><input
+                  name="todo_coDoer"
                   v-model="input_coDoer"
                   @keyup.enter="addCoDoer"
                   class="co-doer"
@@ -38,7 +50,7 @@
                 <button @click="addCoDoer">추가</button>
                 <ul id="coDoer_list">
                   <div v-if="coDoer_list.length > 0">
-                    <li v-for="(co, index) in coDoer_list" :key="co" class="">
+                    <li v-for="(co, index) in coDoer_list" :key="co">
                       {{ co }}
                       <button @click="coDoer_list.splice(index, 1)">❌</button>
                     </li>
