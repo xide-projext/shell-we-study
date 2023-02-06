@@ -1,7 +1,7 @@
 <template>
   <button class="add_btn" @click="clickAddTodo">+ NEW</button>
   <ag-grid-vue
-    class="ag-theme-alpine"
+    class="ag-theme-material"
     :columnDefs="gridOptions.columnDefs"
     :rowData="gridOptions.rowData"
     :defaultColDef="gridOptions.defaultColDef"
@@ -10,7 +10,6 @@
     @cell-clicked="clickRowData"
   >
   </ag-grid-vue>
-
   <AddTodoModal
     v-if="showModal"
     @close="showModal = false"
@@ -24,7 +23,7 @@
 import AddTodoModal from "./AddTodoModal.vue";
 import { ref } from "vue";
 import "ag-grid-community/styles//ag-grid.css";
-import "ag-grid-community/styles//ag-theme-alpine.css";
+import "ag-grid-community/styles//ag-theme-material.css";
 import { AgGridVue } from "ag-grid-vue3";
 import "ag-grid-enterprise";
 // import { LicenseManager } from "ag-grid-enterprise";
@@ -199,9 +198,14 @@ const clickRowData = (params) => {
 };
 </script>
 <style scoped>
-.ag-theme-alpine {
+.ag-theme-material {
   width: 70vh;
   height: 50vh;
+  --ag-header-background-color: #f3f4f6;
+  --ag-header-cell-hover-background-color: #e5e7eb;
+  --ag-header-cell-moving-background-color: #e5e7eb;
+  --ag-header-foreground-color: black;
+  --ag-font-size: 15px;
 }
 .add_btn {
   display: flex;
