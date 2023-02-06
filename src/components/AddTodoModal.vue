@@ -52,7 +52,7 @@
                 <input
                   name="todo_link"
                   v-model="input_link"
-                  class="link block border-0 p-0 bg-white text-gray-900 placeholder-gray-500 focus:ring-0 focus:outline-none"
+                  class="link block w-full border-0 p-0 bg-white text-gray-900 placeholder-gray-500 focus:ring-0 focus:outline-none"
                   type="text"
                 />
               </div>
@@ -84,6 +84,7 @@
                 <Datepicker
                   name="todo_due"
                   v-model="input_date"
+                  :style="datepickerCustom"
                   class="block border-0 p-0 bg-white text-gray-900 placeholder-gray-500 focus:ring-0 focus:outline-none"
                 />
               </div>
@@ -168,6 +169,11 @@ const props = defineProps({
   },
 });
 
+const datepickerCustom = {
+  "--vdp-hover-bg-color": "#0369a1",
+  "--vdp-selected-bg-color": "#0369a1",
+};
+
 // 기존에 있던 todo 눌렀을 때
 if (props.selectedRow.title !== "") {
   input_title.value = props.selectedRow.title;
@@ -223,7 +229,7 @@ const saveTodo = () => {
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
-  border-radius: 6px;
+  border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
   color: black;
