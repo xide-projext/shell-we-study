@@ -90,7 +90,14 @@ const gridOptions = {
 
 const onGridReady = (params) => {
   gridApi = params.api;
-  params.api.sizeColumnsToFit();
+
+  // size columns to fit
+  const allColumnIds = [];
+  gridOptions.columnApi.getColumns().forEach((column) => {
+    allColumnIds.push(column.getId());
+  });
+
+  gridOptions.columnApi.autoSizeColumns(allColumnIds, false);
 };
 
 const clickAddTodo = () => {
